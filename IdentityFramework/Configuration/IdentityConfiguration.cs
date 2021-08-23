@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace IdentityFramework.Configuration
 {
@@ -23,7 +24,7 @@ namespace IdentityFramework.Configuration
                 options.SignIn.RequireConfirmedAccount = true;
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<IdentityContext>().AddDefaultUI();
-
+           
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -43,6 +44,7 @@ namespace IdentityFramework.Configuration
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
+
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -54,8 +56,8 @@ namespace IdentityFramework.Configuration
                 options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
-            });
-        
+            }).AddTransient<IEmailSender, EmailService>(); 
+       
             return services;
         }
     }
