@@ -73,7 +73,7 @@ namespace IdentityFramework.Controllers
             
             if(result.Succeeded)
             {
-                //Retornar para a tela de login;
+                return View("Login");
             }
 
             return RedirectToAction("Index","Home");
