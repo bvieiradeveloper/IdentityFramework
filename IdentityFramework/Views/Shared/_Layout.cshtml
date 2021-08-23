@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,9 +30,9 @@
                 </div>
                 <div>
                     <ul class="navbar navbar-navbar-right">
-                       <li>@Html.ActionLink("Register","Register","Account")</li>
-                    </ul>
+                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
 
+                    </ul>
                 </div>
             </div>
         </nav>
