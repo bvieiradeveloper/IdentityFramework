@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
     <title>@ViewData["Title"] - IdentityFramework</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/reseter.css/reseter.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -29,9 +31,20 @@
                     </ul>
                 </div>
                 <div>
-                    <ul class="navbar navbar-navbar-right">
-                        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                    <ul class="navbar navbar-navbar-right" style="list-style-type: none; margin:10px;">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { id = "form_logoff" })) { };
+                            <li style="margin:10px;"> <p class="navbar-text"> Olá, @User.Identity.GetUserName() </p> </li>
+                            <li> <a href="javascript:document.getElementById('form_logoff').submit()"> Logoff </a> </li>
 
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                            <li>@Html.ActionLink("Login","Login","Account")</li>
+
+                        }
                     </ul>
                 </div>
             </div>

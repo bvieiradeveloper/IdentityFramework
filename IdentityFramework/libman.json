@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "reseter.css@2.0.0",
+      "destination": "wwwroot/css/reseter.css/"
+    }
+  ]
+}
